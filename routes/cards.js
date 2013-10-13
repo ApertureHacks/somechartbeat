@@ -9,7 +9,15 @@ exports.get_popular_cards = function(callback) {
       if (!error && response.statusCode === 200) {
         $ = cheerio.load(body);
         $(".cardthumb").each(function(i, elem) {
-          results[i] = elem.attribs.href;
+          results[i] = {'url': elem.attribs.href};
+          request('http://www.someecards.com' + results[i].url, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+              $2 = cheerio.load(body);
+              if ($2('.main-img')[0] !== undefined) {
+                results[i].img = $2(".main-img")[0].attribs.src;
+              }
+            }
+          });
         });
         callback(results);
       }
