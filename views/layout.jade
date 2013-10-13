@@ -6,15 +6,13 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="//code.jquery.com/jquery.js")
   body
-    div(id="wrap")
-      div(class="navbar navbar-default navbar-fixed-top")
-        div(class="container")
-          div(class="navbar-header")
-            a(class="navbar-brand", href="/")= title
-          div(class="navbar-collapse collapse")
-            ul(class="nav navbar-nav navbar-right")
-      block content
-    div(id="footer")
+    div(class="navbar navbar-default navbar-fixed-top")
       div(class="container")
-        p(class="text-muted credit")!= title + ' &copy; ' + authors
+        div(class="navbar-header")
+          a(class="navbar-brand", href="/")= title
+        div(class="navbar-collapse collapse")
+          ul(class="nav navbar-nav navbar-right")
+    block content
     script(src="/javascripts/bootstrap.min.js")
+    script(src="/javascripts/raphael-min.js")
+    script(src="/javascripts/us_map.js")
