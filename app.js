@@ -5,7 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-var chartbeat = require('./routes/chartbeat.js');
+var chartbeat = require('./routes/chartbeat');
 var http = require('http');
 var path = require('path');
 
