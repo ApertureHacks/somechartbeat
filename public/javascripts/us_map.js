@@ -19,9 +19,10 @@ function pickRandomProperty(obj) {
   var result;
   var count = 0;
   for (var prop in obj)
-    if (Math.random() < 1/++count)
-      result = prop;
-  return result;
+    if ([ 'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ].indexOf(prop) > -1) {
+      return prop;
+    }
+  return prop;
 }
 
 var rsr = Raphael('rsr', 100, 792, 0, 0);
@@ -1507,31 +1508,29 @@ $(document).ready(function(){
 
   var rsrGroups = [CA, OR, WA, NV, AZ, ID, UT, MT, WY, NM, CO, TX, NE, SD, ND, OK, KS, MN, IA, MO, AR, LA, WI, IL, MS, TN, KY, IN, AL, MI, FL, OH, GA, NC, VA, WV, SC, PA, MD, NJ, DE, VT, MA, CT, NH, ME, RI, NY, AK, HI];
 
-  // for (var i = 0, len = rsrGroups.length; i <= len; i++) {
+  for (var i = 0, len = rsrGroups.length; i < len; i++) {
 
-      // var el = rsrGroups[i];
+    var el = rsrGroups[i];
 
-      // el.mouseover(function() {
-      //     this.toFront();
-      //     this.attr({
-      //         cursor: 'pointer',
-      //         fill: '#990000',
-      //         stroke: '#fff',
-      //         'stroke-width': '2'
-      //     });
-      //     this.animate({
-      //         scale: '1.2'
-      //     }, 200);
-      // });
-      // el.mouseout(function() {
-      //     this.animate({
-      //         scale: '1.05'
-      //     }, 200);
-      //     this.attr({
-      //         fill: '#003366'
-      //     });
-      // });
-  // }
+    el.mouseover(function() {
+        this.toFront();
+        this.attr({
+          cursor: 'pointer',
+          'stroke-width': '2'
+        });
+        this.animate({
+            transform: 's1.5'
+        }, 200);
+    });
+    el.mouseout(function() {
+        this.attr({
+          'stroke-width': '0'
+        });
+        this.animate({
+            transform: 's1.00'
+        }, 200);
+    });
+  }
 
   window.setInterval(function() {
     var card = cards[Math.floor((Math.random()*cards.length)+1)];
@@ -1546,6 +1545,9 @@ $(document).ready(function(){
         data = JSON.parse(data);
         var region;
         var state;
+        var colorThief = new ColorThief();
+        var cardImage = new Image();
+        cardImage.src = card.img;
         try{
           region = pickRandomProperty(data.regions);
           console.log("Using region " + region);
@@ -1703,14 +1705,15 @@ $(document).ready(function(){
             default:
               throw "state not found";
           }
-          state.attr({'fill': get_random_color()});
           console.log("Found a state to use.");
         }catch(err) {
           console.log("Using random state.");
-          state = rsrGroups[Math.floor((Math.random()*rsrGroups.length)+1)];
-          state.attr({'fill': get_random_color()});
+          state = rsrGroups[Math.floor(Math.random()*rsrGroups.length)];
         }
-        state.click(function() {
+        cardImage.onLoad(function() {
+          state.attr({'fill': colorThief.getColor(cardImage)});
+        });
+        state.mouseover(function() {
           $("#card-container").attr("src", card.img);
         });
       },
@@ -1718,5 +1721,5 @@ $(document).ready(function(){
         console.log("AJAX ERROR: " + error.message);
       }
     });
-  }, 5000);
+  }, 2500);
 });
