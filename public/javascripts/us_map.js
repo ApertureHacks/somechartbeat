@@ -1,5 +1,403 @@
 var rsr = Raphael('rsr', 100, 792, 0, 0);
 
+var cards = [
+  {
+    "url": "/birthday-cards/birthday-congress-old-useless-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/congress-old-useless-shutdown-birthday-ecards-someecards.png"
+  },
+  {
+    "url": "/usercards/viewcard/MjAxMi1hYWYxYzhlYTFiMzYyZGU3",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMi1hYWYxYzhlYTFiMzYyZGU3.png"
+  },
+  {
+    "url": "/birthday-cards/government-shutdown-birthday-card-friend-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/government-shutdown-card-birthday-ecards-someecards.png"
+  },
+  {
+    "url": "/apology-collection-cards/relationship-dating-sex-sorry-apology-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/relationship-love-dating-sorry-apology-ecards-someecards.png"
+  },
+  {
+    "url": "/reminders-cards/mammogram-instagram-breast-cancer-awareness-month-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/mammogram-instagram-breast-cancer-awareness-reminders-ecards-someecards.png"
+  },
+  {
+    "url": "/flirting-cards/vegetarian-meat-body-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/vegetarian-meat-body-flirting-ecards-someecards.png"
+  },
+  {
+    "url": "/usercards/viewcard/fd06ac2398bf3b7c2b33745391d66ff7",
+    "img": "http://static.someecards.com/someecards/usercards/fd06ac2398bf3b7c2b33745391d66ff7.png"
+  },
+  {
+    "url": "/usercards/viewcard/MjAxMy04ZGU0MDkwNjYwZjU0M2Q3",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy04ZGU0MDkwNjYwZjU0M2Q3_524c3ea60d295.png"
+  },
+  {
+    "url": "/birthday-cards/birthday-elderly-best-friends-forever-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/elderly-old-best-friends-forever-birthday-ecards-someecards.png"
+  },
+  {
+    "url": "/flirting-cards/back-massage-sex-love-coupon-valentines-day-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/love-coupon-back-massage-sex-valentines-day-ecards-someecards.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1kY2Q2ZGVmZTdkODhlNmU2",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1kY2Q2ZGVmZTdkODhlNmU2_51f6a8c37a0c4.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMS1iMTA2ZWZjZTE2MGRhNWU3",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMS1iMTA2ZWZjZTE2MGRhNWU3.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy0xN2VjNjBiNTkyYjM4MmZl",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy02NjcwNDJjMTAwMDU1MzM1.png"
+  },
+   {
+    "url": "/columbus-day-cards/government-shutdown-columbus-day-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/government-shutdown-columbus-day-columbus-day-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/happy-birthday-shameful-family-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-birthday-shameful-family-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/30-40-50-60-thirties-forties-fifties-old-birthday-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/30-40-50-60-thirties-forties-fifties-old-birthday-ecard.png"
+  },
+   {
+    "url": "/birthday-cards/happy-birthday-to-one-of-the-few-people",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-one-few-people-birthday-ecard-someecards.jpg"
+  },
+   {
+    "url": "/usercards/viewcard/4c35e74e1be01aa4ddd668624a5f13d1",
+    "img": "http://static.someecards.com/someecards/usercards/1298498516584_4129121.png"
+  },
+   {
+    "url": "/birthday-cards/birthday-bender-drink-autumn-leaves-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/autumn-leaves-drink-drunk-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/flirting-cards/sex-flirting-government-shutdown-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/sex-government-shutdown-flirting-ecards-someecards.png"
+  },
+   {
+    "url": "/columbus-day-cards/crowded-commute-columbus-day-indians-murder-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/commute-hell-america-columbus-day-ecards-someecards.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMS1mODAxMzk0NzE4YzdkMTJh",
+    "img": "http://static.someecards.com/someecards/usercards/1311039281603_320022.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1lMDc1NDNmYjNmMWNiYjlm",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1lMDc1NDNmYjNmMWNiYjlm_5237478244316.png"
+  },
+   {
+    "url": "/censored-cards/empty-vagina-flirting-woman-lonely-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/empty-vagina-flirting-woman-lonely-sex-censored-ecards-someecards.png"
+  },
+   {
+    "url": "/columbus-day-cards/columbus-day-illegal-immigrant-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/columbus-day-illegal-immigrant-columbus-day-ecards-someecards.png"
+  },
+   {
+    "url": "/usercards/viewcard/382b009819959a46a12e13b211a926ab",
+    "img": "http://static.someecards.com/someecards/usercards/382b009819959a46a12e13b211a926ab.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy04ZDMyMDIzMTdkNTUzNDJi",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy04ZDMyMDIzMTdkNTUzNDJi_51e6d108234d7.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy0xNGNlMjY2NDQ3YjExYTM4",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy04ZGU0NzQzNzY0YjI1Yjk0.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1kYzU3NDFjMWFmMmRlM2Rl",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1kYzU3NDFjMWFmMmRlM2Rl_515988ab840ab.png"
+  },
+   {
+    "url": "/usercards/viewcard/a2a2ace26558194db8b34f03007dcd24",
+    "img": "http://static.someecards.com/someecards/usercards/a2a2ace26558194db8b34f03007dcd24.png"
+  },
+   {
+    "url": "/anniversary-cards/happy-anniversary-love-couple-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/anniversary-celebrate-gave-up.jpg"
+  },
+   {
+    "url": "/birthday-cards/happy-birthday-miley-cyrus-legs-spread-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-birthday-miley-cyrus-legs-spread-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/encouragement-cards/good-luck-not-hitting-the-wall-and-shitting-your-pants-in-public",
+    "img": "http://cdn.someecards.com/someecards/filestorage/good-luck-not-hitting-encouragement-ecard-someecards.jpg"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy02MzkwNWJiNjE4MTA1Y2U2",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy02MzkwNWJiNjE4MTA1Y2U2_525304c56ec69.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy0zM2RhNjVlMjgxZjJjOTM3",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy0zM2RhNjVlMjgxZjJjOTM3_524ef02f71292.png"
+  },
+   {
+    "url": "/usercards/viewcard/e70269ce9b3241cefd722a09c9943ad3",
+    "img": "http://static.someecards.com/someecards/usercards/1300394834620_5045752.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1hMjVkMTRhZGNhOWM3OTE2",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy0xZDRmYTU3NzAzMzU1YjRm.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy01MjgxZjczMzljY2NmMmYw",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy00ZjFkY2Y4OWI5ZTMwMGRm.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1mYzg5MTdkZjU2OGJlMGZh",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1mYzg5MTdkZjU2OGJlMGZh_524db2f4af5ab.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMi0yMzI4NzY1YTEwMzA4ZDdj",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMi0yMzI4NzY1YTEwMzA4ZDdj_517551dc7d61c.png"
+  },
+   {
+    "url": "/birthday-cards/belated-birthday-card-forget-family-friend-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/late-belated-forget-friend-family-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/my-chateau-cards/romantic-evening-wine-chateau-ste-michelle-kids-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/kids-bed-wine-drink-my-chateau-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/may-you-live-long-enough-to-shit-yourself",
+    "img": "http://cdn.someecards.com/someecards/filestorage/live-long-enough-shit-birthday-ecard-someecards.jpg"
+  },
+   {
+    "url": "/get-well-cards/get-well-sick-coworker-work-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/sick-work-job-coworker-get-well-ecards-someecards.png"
+  },
+   {
+    "url": "/weekend-cards/nice-weekend-blame-obama-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/nice-weekend-blame-obama-weekend-ecards-someecards.png"
+  },
+   {
+    "url": "/thinking-of-you-cards/even-when-we-re-80-i-will-do-you-from-behind",
+    "img": "http://cdn.someecards.com/someecards/filestorage/even-behind-thinking-of-you-ecard-someecards.jpg"
+  },
+   {
+    "url": "/somewhat-topical-cards/just-let-me-know-if-theres-anything-i-can-do-this-month-to-further-the-cause-of-healthy-breasts",
+    "img": "http://cdn.someecards.com/someecards/filestorage/know-anything-month-further-somewhat-topical-ecard-someecards.jpg"
+  },
+   {
+    "url": "/apology-collection-cards/paleodiet-diet-meat-caveman-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/paleodiet-diet-meat-apology-ecards-someecards.png"
+  },
+   {
+    "url": "/friendship-cards/youre-the-oates",
+    "img": "http://cdn.someecards.com/someecards/filestorage/oates-friendship-ecard-someecards.jpg"
+  },
+   {
+    "url": "/flirting-cards/i-couldnt-help-noticing",
+    "img": "http://cdn.someecards.com/someecards/filestorage/couldnt-help-noticing-flirting-ecard-someecards.jpg"
+  },
+   {
+    "url": "/birthday-cards/i-knew-that-a-paper-card",
+    "img": "http://cdn.someecards.com/someecards/filestorage/knew-paper-card-birthday-ecard-someecards.jpg"
+  },
+   {
+    "url": "/anniversary-cards/congratulations-on-defying-marriage",
+    "img": "http://cdn.someecards.com/someecards/filestorage/congratulations-defying-marriage-anniversary-ecard-someecards.jpg"
+  },
+   {
+    "url": "/censored-cards/censored-thinking-about-you-masturbation-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/censored-thinking-about-you-masturbation-censored-ecards-someecards.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy0xMTE5NTNiMjcxODdhMGM2",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy0xMTE5NTNiMjcxODdhMGM2_52543f0b7531e.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy0wNTVhZmEzMWZjMmI1M2I4",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy0wNTVhZmEzMWZjMmI1M2I4_5143555ad1fd4.png"
+  },
+   {
+    "url": "/usercards/viewcard/dd39945842aa08b46c2c1fe0621e327ad7",
+    "img": "http://static.someecards.com/someecards/usercards/dd39945842aa08b46c2c1fe0621e327ad7.png"
+  },
+   {
+    "url": "/usercards/viewcard/f5f27cf27312843a66bbe40750ccf5c1",
+    "img": "http://static.someecards.com/someecards/usercards/1294360551523_1925507.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1jODM1OGIxMWZhYmU4ZmRi",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1jODM1OGIxMWZhYmU4ZmRi_51976232a0873.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMi03MjhlOTc4YTEzNWM0OGFm",
+    "img": "http://static.someecards.com/someecards/usercards/1344844661267_5161204.png"
+  },
+   {
+    "url": "/usercards/viewcard/d4eab00f115d4dd5856d5265224fef62",
+    "img": "http://static.someecards.com/someecards/usercards/1290975152274_185980.png"
+  },
+   {
+    "url": "/birthday-cards/twenty-ninth-lying-thirty-women-birthday-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/twenty-ninth-women-woman-thirty-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/birthday-facebook-twitter-tweet-update-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/twitter-facebook-tweet-update-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/get-well-cards/since-youre-sick",
+    "img": "http://cdn.someecards.com/someecards/filestorage/since-sick-get-well-ecard-someecards.jpg"
+  },
+   {
+    "url": "/flirting-cards/id-appreciate-it-if-you-started-treating-me",
+    "img": "http://cdn.someecards.com/someecards/filestorage/appreciate-started-treating-flirting-ecard-someecards.jpg"
+  },
+   {
+    "url": "/workplace-cards/happy-hour-work-late-drink-booze-office-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-hour-drink-booze-office-workplace-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/just-wanted-to-be-the-first-one-to-wish",
+    "img": "http://cdn.someecards.com/someecards/filestorage/wanted-first-one-wish-birthday-ecard-someecards.jpg"
+  },
+   {
+    "url": "/birthday-cards/birthday-candles-cake-gray-pubes-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/gray-pubes-candles-cake-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/censored-cards/censored-vagina-open-up-flirt-couple-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/open-up-flirt-woman-sex-censored-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/barack-obama-dnc-gray-aging-birthday-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/barack-obama-aged-gray-dnc-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/miss-you-cards/miss-you-enough-to-hit-send-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/miss-you-enough-to-hit-send-missing_you-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/happy-birthday-to-someone-still-young-enough-to-become-a-professional-curler",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-someone-young-enough-birthday-ecard-someecards.png"
+  },
+   {
+    "url": "/anniversary-cards/happy-anniversary-to-a-couple-who-almost",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-couple-almost-anniversary-ecard-someecards.jpg"
+  },
+   {
+    "url": "/anniversary-cards/happy-anniversary-from-someone-youre-probably",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-someone-anniversary-ecard-someecards.jpg"
+  },
+   {
+    "url": "/halloween-cards/i-cant-decide-this-halloween-whether-to-go-as-a-slutty-witch-a-slutty-nurse-a-slutty-schoolgirl-or-just-a-total-slut",
+    "img": "http://cdn.someecards.com/someecards/filestorage/decide-whether-slutty-witch-halloween-ecard-someecards.jpg"
+  },
+   {
+    "url": "/birthday-cards/birthday-aging-selfie-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/birthday-aging-selfie-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/workplace-cards/coworker-hurricane-sandy-work-home-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/coworker-work-office-hurricane-sandy-home-workplace-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/missed-belated-birthday-no-acknowledgement-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/missed-belated-birthday-no-acknowledgement-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/facebook-notifications-social-network-birthday-funny-ecard",
+    "img": "http://cdn.someecards.com/someecards/filestorage/facebook-notifications-social-network-birthday-ecards-someecards.png"
+  },
+   {
+    "url": "/birthday-cards/birthday-confusion-michael-showalter"
+  },
+   {
+    "url": "/birthday-cards/happy-belated-birthday-to-someone-who-now-has-free-rein-to-forget-mine",
+    "img": "http://cdn.someecards.com/someecards/filestorage/happy-belated-someone-free-birthday-ecard-someecards.jpg"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy02Y2M3ZjY1ZmI2NzdkNTkz",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy04NTYyMzU1ZmRjZDI0NWU1.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy02NzdkYjljYzgzZjFlOTI0",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy02NzdkYjljYzgzZjFlOTI0_5256be4360058.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy00OGM2M2RmNTIzNzQ4Zjc0",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy00OGM2M2RmNTIzNzQ4Zjc0_52374520c0d7a.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy1kNjAyY2M3NGYyZGRkMmRl",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1kNjAyY2M3NGYyZGRkMmRl_51ed811dce64e.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy01OTVjYWFkZWUwZDRiZjc3",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy0xZDgxMzJmYzc1MzViMDhk.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMi05MTk3YWRlM2M4MGFiZmE4",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMi0yNzdkOWVhNjA5MDMwZjE3.png"
+  },
+   {
+    "url": "/usercards/viewcard/05a54e7690bc15c74c15e0fa0f09db82",
+    "img": "http://static.someecards.com/someecards/usercards/05a54e7690bc15c74c15e0fa0f09db82_51df08284d8f4.png"
+  },
+   {
+    "url": "/usercards/viewcard/ae87a421b644cd4b0203e6bffd02752203",
+    "img": "http://static.someecards.com/someecards/usercards/ae87a421b644cd4b0203e6bffd02752203_510bea5aca861.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMi1kNzVmNjNmMWI1ZjBlYThh",
+    "img": "http://static.someecards.com/someecards/usercards/1348000005060_472236.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMy0zNGMwMTlhYTI1YjFjNzA4",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMy1jODExNDE0MDA1NWQwMWMw.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMi1hY2IyYzBiMWNhNzRiZjFi",
+    "img": "http://static.someecards.com/someecards/usercards/1341939514068_6358057.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMS03MzgwOGNmM2MxZjJkZTAw",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMS03MzgwOGNmM2MxZjJkZTAw.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMi04ZDA2NDQyYjVmYzQxODMy",
+    "img": "http://static.someecards.com/someecards/usercards/1351083002539_8240662.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMS1mZGY4MGRmNjEwMGU0OTNm",
+    "img": "http://static.someecards.com/someecards/usercards/1307976628792_3120958.png"
+  },
+   {
+    "url": "/usercards/viewcard/f2683953bb7d3f988b032c443f27aeb8",
+    "img": "http://static.someecards.com/someecards/usercards/1298508652192_8804169.png"
+  },
+   {
+    "url": "/usercards/viewcard/MjAxMS1mNDMxZWU3M2YyMWYxM2Fi",
+    "img": "http://static.someecards.com/someecards/usercards/MjAxMS1mNDMxZWU3M2YyMWYxM2Fi_med.png"
+  },
+   {
+    "url": "/usercards/viewcard/170bdaf35d21e419708c81405bd8a5eb",
+    "img": "http://static.someecards.com/someecards/usercards/1292216147843_1808971.png"
+  },
+   {
+    "url": "/usercards/viewcard/7443c2d9fe3f1d449faae8c8c024e59b",
+    "img": "http://static.someecards.com/someecards/usercards/1290120010375_3489659.png"
+  },
+   {
+    "url": "/usercards/viewcard/82d60fa22d8e61fb539781fc4168a0a3",
+    "img": "http://static.someecards.com/someecards/usercards/1294188772572_3630952.png"
+  }
+];
+
 $(document).ready(function(){
   var CA = rsr.set();
   CA.push(rsr.path("M29.372,112.632c0.448-2.074-0.185-3.696,0.417-5.552c0.523-1.614,9.007,1.63,10.56,2.049     c7.394,1.992,14.819,3.833,22.253,5.675c0.358,0.089-4.784,20.848-5.296,23.008c-0.658,2.777-1.348,5.545-2.026,8.316     c-0.288,1.178,2.975,4.554,3.622,5.471c7.907,11.218,17.359,24.53,28.387,40.352c2.367,3.395,4.734,6.791,7.101,10.188     c0.693,0.994-0.102,2.939,0.452,4.352c0.903,2.304,6.204,5.454,3.245,6.901c-2.521,1.234-2.582,2.198-3.254,4.711     c-0.712,2.656-4.289,3.06-3.475,6.303c0.277,1.104,1.471,0.553,0.685,2.783c-0.492,1.396-1.518,0.685-2.401,0.804     c-4.382,0.594-10.366-1.552-14.701-2.247c-2.591-0.415-9.717,0.07-9.884-3.427c0.124,0.27,0.247,0.539,0.37,0.809     c-0.136-0.172-0.107-0.751-0.52-1.246c-0.069,0.187-0.138,0.373-0.206,0.56c0.7-6.632-2.082-8.465-5.18-13.755     c-1.033-1.764-2.033-0.709-3.063-1.952c-0.276-0.333,0.099-2.205-0.459-2.907c-0.613-0.771-2.818-0.635-3.774-1.269     c-2.306-1.525-2.4-3.582-4.458-5.239c-1.363-1.097-3.95-1.646-5.613-2.509c-6.033-3.126-1.324-2.901-2.265-8.183     c-0.142-0.793-1.173-0.901-1.592-1.438c-0.732-0.938,0.481-1.145,0.332-1.945c-0.337-1.812-2.825-3.184-3.008-5.111     c-0.184-1.936-1.536-4.819-2.76-6.361c-2.196-2.764,1.312-4.041,1.584-5.199c0.779-3.308-2.83-2.898-3.682-5.836     c-0.237-0.815-0.439-4.003-0.283-4.572c1.494-5.428,1.273,0.417,3.861,1.909c-0.503-0.947-2.137-5.705-1.311-6.532     c1.059-1.058,7.357,1.466,7.675,2.321c-0.436-1.301-1.328-1.701-2.592-1.268c0.445-0.283,0.552-0.641,0.878-0.92     c-0.873,0.603-3.113,0.271-3.933-0.021c-2.271-0.807-0.86-1.799-2.976-0.801c-1.311,0.618,1.217,2.723-1.343,1.639     c-1.624-0.688-0.819-2.721-2.831-2.265c0.176-0.618,0.548-1.663,0.869-2.178c0.158,0.469,0.315,0.939,0.473,1.408     c-0.061-1.126-0.616-2.429-1.013-2.615c0.206-2.128-4.584-7.29-3.319-8.66c0.827-0.896,0.721-4.223,0.896-5.443     c0.166-1.164,0.705-2.193,0.529-3.532c-0.553-4.208-3.62-5.088-1.135-9.334c0.624-1.065,1.352-1.39,1.917-2.325    C28.076,115.98,28.391,114.359,29.372,112.632").attr({
