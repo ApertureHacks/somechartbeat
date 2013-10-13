@@ -1506,4 +1506,24 @@ $(document).ready(function(){
           });
       });
   }
+
+  window.setInterval(function() {
+    var card = cards[Math.floor((Math.random()*cards.length)+1)];
+    $.ajax(
+      {
+      type: 'POST',
+      url: window.location.pathname + "/chart",
+      data: { url: card.img },
+      success: function(data){
+        console.log(data);
+        data = JSON.parse(data);
+        if (data.regions.length <= 0) {
+          return;
+        }
+        var region = data.regions[Math.floor((Math.random()*data.regions.length))];
+        var state = eval(region);
+        state.attr({'fill': card.img});
+        }
+    });
+  }, 5000);
 });
