@@ -1,3 +1,29 @@
+function get_random_color() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+    color += letters[Math.round(Math.random() * 15)];
+  }
+  return color;
+}
+
+function isEmpty(obj) {
+  for(var prop in obj) {
+    if(obj.hasOwnProperty(prop))
+      return false;
+  }
+  return true;
+}
+
+function pickRandomProperty(obj) {
+  var result;
+  var count = 0;
+  for (var prop in obj)
+    if (Math.random() < 1/++count)
+      result = prop;
+  return result;
+}
+
 var rsr = Raphael('rsr', 100, 792, 0, 0);
 
 var cards = [
@@ -1481,49 +1507,216 @@ $(document).ready(function(){
 
   var rsrGroups = [CA, OR, WA, NV, AZ, ID, UT, MT, WY, NM, CO, TX, NE, SD, ND, OK, KS, MN, IA, MO, AR, LA, WI, IL, MS, TN, KY, IN, AL, MI, FL, OH, GA, NC, VA, WV, SC, PA, MD, NJ, DE, VT, MA, CT, NH, ME, RI, NY, AK, HI];
 
-  for (var i = 0, len = rsrGroups.length; i <= len; i++) {
+  // for (var i = 0, len = rsrGroups.length; i <= len; i++) {
 
-      var el = rsrGroups[i];
+      // var el = rsrGroups[i];
 
-      el.mouseover(function() {
-          this.toFront();
-          this.attr({
-              cursor: 'pointer',
-              fill: '#990000',
-              stroke: '#fff',
-              'stroke-width': '2'
-          });
-          this.animate({
-              scale: '1.2'
-          }, 200);
-      });
-      el.mouseout(function() {
-          this.animate({
-              scale: '1.05'
-          }, 200);
-          this.attr({
-              fill: '#003366'
-          });
-      });
-  }
+      // el.mouseover(function() {
+      //     this.toFront();
+      //     this.attr({
+      //         cursor: 'pointer',
+      //         fill: '#990000',
+      //         stroke: '#fff',
+      //         'stroke-width': '2'
+      //     });
+      //     this.animate({
+      //         scale: '1.2'
+      //     }, 200);
+      // });
+      // el.mouseout(function() {
+      //     this.animate({
+      //         scale: '1.05'
+      //     }, 200);
+      //     this.attr({
+      //         fill: '#003366'
+      //     });
+      // });
+  // }
 
   window.setInterval(function() {
     var card = cards[Math.floor((Math.random()*cards.length)+1)];
+    console.log(JSON.stringify(card));
     $.ajax(
       {
       type: 'POST',
-      url: window.location.pathname + "/chart",
-      data: { url: card.img },
+      url: window.location.pathname + "chart",
+      data: { card_url: card.url },
       success: function(data){
         console.log(data);
         data = JSON.parse(data);
-        if (data.regions.length <= 0) {
-          return;
+        var region;
+        var state;
+        try{
+          region = pickRandomProperty(data.regions);
+          console.log("Using region " + region);
+          switch(region) {
+            case 'AL':
+              state = AL;
+              break;
+            case 'AK':
+              state = AK;
+              break;
+            case 'AZ':
+              state = AZ;
+              break;
+            case 'AR':
+              state = AR;
+              break;
+            case 'CA':
+              state = CA;
+              break;
+            case 'CO':
+              state = CO;
+              break;
+            case 'CT':
+              state = CT;
+              break;
+            case 'DE':
+              state = DE;
+              break;
+            case 'FL':
+              state = FL;
+              break;
+            case 'GA':
+              state = GA;
+              break;
+            case 'HI':
+              state = HI;
+              break;
+            case 'ID':
+              state = ID;
+              break;
+            case 'IL':
+              state = IL;
+              break;
+            case 'IN':
+              state = IN;
+              break;
+            case 'IA':
+              state = IA;
+              break;
+            case 'KS':
+              state = KS;
+              break;
+            case 'KY':
+              state = KY;
+              break;
+            case 'LA':
+              state = LA;
+              break;
+            case 'ME':
+              state = ME;
+              break;
+            case 'MD':
+              state = MD;
+              break;
+            case 'MA':
+              state = MA;
+              break;
+            case 'MI':
+              state = MI;
+              break;
+            case 'MN':
+              state = MN;
+              break;
+            case 'MS':
+              state = MS;
+              break;
+            case 'MO':
+              state = MO;
+              break;
+            case 'MT':
+              state = MT;
+              break;
+            case 'NE':
+              state = NE;
+              break;
+            case 'NV':
+              state = NV;
+              break;
+            case 'NH':
+              state = NH;
+              break;
+            case 'NJ':
+              state = NJ;
+              break;
+            case 'NM':
+              state = NM;
+              break;
+            case 'NY':
+              state = NY;
+              break;
+            case 'NC':
+              state = NC;
+              break;
+            case 'ND':
+              state = ND;
+              break;
+            case 'OH':
+              state = OH;
+              break;
+            case 'OK':
+              state = OK;
+              break;
+            case 'OR':
+              state = OR;
+              break;
+            case 'PA':
+              state = PA;
+              break;
+            case 'RI':
+              state = RI;
+              break;
+            case 'SC':
+              state = SC;
+              break;
+            case 'SD':
+              state = SD;
+              break;
+            case 'TN':
+              state = TN;
+              break;
+            case 'TX':
+              state = TX;
+              break;
+            case 'UT':
+              state = UT;
+              break;
+            case 'VT':
+              state = VT;
+              break;
+            case 'VA':
+              state = VA;
+              break;
+            case 'WA':
+              state = WA;
+              break;
+            case 'WV':
+              state = WV;
+              break;
+            case 'WI':
+              state = WI;
+              break;
+            case 'WY':
+              state = WY;
+              break;
+            default:
+              throw "state not found";
+          }
+          state.attr({'fill': get_random_color()});
+          console.log("Found a state to use.");
+        }catch(err) {
+          console.log("Using random state.");
+          state = rsrGroups[Math.floor((Math.random()*rsrGroups.length)+1)];
+          state.attr({'fill': get_random_color()});
         }
-        var region = data.regions[Math.floor((Math.random()*data.regions.length))];
-        var state = eval(region);
-        state.attr({'fill': card.img});
-        }
+        state.click(function() {
+          $("#card-container").attr("src", card.img);
+        });
+      },
+      error: function(xhr, status, error){
+        console.log("AJAX ERROR: " + error.message);
+      }
     });
   }, 5000);
 });
