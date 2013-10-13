@@ -5,6 +5,7 @@ var cheerio = require('cheerio');
 exports.get_popular_cards = function(callback) {
   request('http://www.someecards.com/popular-cards/most-sent-today/1/100/',
     function (error, response, body) {
+      var results = {};
       if (!error && response.statusCode === 200) {
         $ = cheerio.load(body);
         $(".cardthumb").each(function(i, elem) {
